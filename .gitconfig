@@ -1,0 +1,6 @@
+[user]
+	name = Liam Nestelroad
+	email = nestelroadliam@gmail.com
+	signingkey = ABD797C18466AF3C
+[core]
+	editor=vim

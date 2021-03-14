@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/vagrant/.oh-my-zsh"
+export ZSH="/home/liamnestelroad/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -104,7 +104,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
 #ALIAS
 # 
 alias ls="ls -ahl -G"
-alias algo="~/algo"
 alias tree="tree -C"
 
 function mvd() {
