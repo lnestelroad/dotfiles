@@ -1,0 +1,21 @@
+# NOTE: If you want the data to persist, before you run docker-compose you need to add the following volume:
+##  docker volume create --name=pgdata
+
+# Other wise all data added and modified to the database will be removed upon stopping the container
+
+# Command to build:
+#   docker-compose up -d
+
+# Command to stop:
+#   docker-compose down
+
+version: "3.1"
+
+services:
+  jupyter:
+    build: /docker/Jupyter
+    ports:
+      - 8888:8888
+    volumes:
+      - "./:/home/jovyan/work"
+    restart: always

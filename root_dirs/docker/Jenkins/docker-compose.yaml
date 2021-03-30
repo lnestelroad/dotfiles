@@ -1,0 +1,69 @@
+version: "3.7"
+
+services:
+
+  ########################################################################
+  # Gitea
+  ########################################################################
+  
+  gitea-server:
+    image: gitea/gitea:latest
+    container_name: gitea-server
+    hostname: gitea-server
+    environment:
+      - USER_UID=1001
+      - USER_GID=1001
+      - DB_TYPE=mysql
+      - DB_HOST=gitea-db:3306
+      - DB_NAME=gitea
+      - DB_USER=gitea
+      - DB_PASSWD=gitea
+    restart: unless-stopped 
+    volumes:
+      - /docker/Jenkins/gitea-server_config:/data
+    ports:
+      - "3000:3000"
+      - "2022:22"
+    depends_on:
+      - gitea-db
+
+  gitea-db:
+    image: mariadb:latest
+    container_name: gitea-db
+    hostname: gitea-db
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=gitea
+      - MYSQL_USER=gitea
+      - MYSQL_PASSWORD=gitea
+      - MYSQL_DATABASE=gitea
+    volumes:
+      - /docker/Jenkins/gitea-db_config:/var/lib/mysql
+
+  ########################################################################
+  # Jenkins
+  ########################################################################
+
+  jenkins:
+    build: "."
+    container_name: jenkins
+    hostname: jenkins
+    privileged: true
+    user: root
+    environment:
+      - TZ=America/Denver
+      # - JAVA_OPTS="-Xmx4096m"
+      # - JENKINS_OPTS="--handlerCountStartup=100"
+      # - JENKINS_OPTS="--handlerCountMax=300"
+#      - CASC_JENKINS_CONFIG=/var/jenkins_home/casc_configs/jenkins.yaml 
+    restart: unless-stopped
+    ports:
+      - "8001:8080"
+      - "50000:50000"
+    volumes:
+      # Host docker socket
+      - /var/run/docker.sock:/var/run/docker.sock
+        # Jenkins Home
+      - /docker/Jenkins/jenkins_config:/var/jenkins_home
+    depends_on:
+      - gitea-server
