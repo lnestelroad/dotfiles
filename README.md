@@ -95,20 +95,52 @@ sh -c "$(wget https://raw.githubusercontent.com/lnestelroad/dotfiles/master/inst
         snapd
     ```
 
-4. Create symlinks in the Home directory to the real files in the repo.
+3. Create symlinks in the Home directory to the real files in the repo.
 
-```zsh
-# There are better and less manual ways to do this;
-# investigate install scripts and bootstrapping tools.
+    ```bash
+    # There are better and less manual ways to do this;
+    # investigate install scripts and bootstrapping tools.
 
-ln -sf ~/.dotfiles/.zshrc ~/.zshrc
-ln -sf ~/.dotfiles/.zsh_history ~/.zsh_history
-ln -sf ~/.dotfile/.vimrc ~/.vimrc
-ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
-ln -sf ~/.dotfile/.tmux.conf ~/.tmux.conf
-```
+    ln -sf ~/.dotfiles/.zshrc ~/.zshrc
+    ln -sf ~/.dotfiles/.zsh_history ~/.zsh_history
+    ln -sf ~/.dotfile/.vimrc ~/.vimrc
+    ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
+    ln -sf ~/.dotfile/.tmux.conf ~/.tmux.conf
+    ```
 
-
+4. Install vscode extensions.
+    ```zsh
+    code --install-extension aaron-bond.better-comments
+    code --install-extension CoenraadS.bracket-pair-colorizer-2
+    code --install-extension dave-hagedorn.jenkins-runner
+    code --install-extension disroop.conan
+    code --install-extension eamodio.gitlens
+    code --install-extension Equinusocio.vsc-community-material-theme
+    code --install-extension Equinusocio.vsc-material-theme
+    code --install-extension equinusocio.vsc-material-theme-icons
+    code --install-extension GrapeCity.gc-excelviewer
+    code --install-extension Gruntfuggly.todo-tree
+    code --install-extension hediet.vscode-drawio
+    code --install-extension James-Yu.latex-workshop
+    code --install-extension janjoerke.jenkins-pipeline-linter-connector
+    code --install-extension ms-azuretools.vscode-docker
+    code --install-extension ms-python.python
+    code --install-extension ms-python.vscode-pylance
+    code --install-extension ms-toolsai.jupyter
+    code --install-extension ms-vscode-remote.remote-containers
+    code --install-extension ms-vscode.cpptools
+    code --install-extension PKief.material-icon-theme
+    code --install-extension streetsidesoftware.code-spell-checker
+    code --install-extension tomoki1207.pdf
+    code --install-extension twxs.cmake
+    code --install-extension VisualStudioExptTeam.vscodeintellicode
+    code --install-extension vscode-icons-team.vscode-icons
+    code --install-extension vscodevim.vim
+    ```
+    Use this command to generate extension installation list:
+    ```bash
+    code --list-extensions | xargs -L 1 echo code --install-extension
+    ```
 
 ## TODO List
 
