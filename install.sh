@@ -75,7 +75,6 @@ sudo -u $SUDO_USER vim +visual +PluginInstall +qall
 # Soft link config files in home directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 sudo -u $SUDO_USER ln -sf $DIR/.zshrc /home/$SUDO_USER/.zshrc
-sudo -u $SUDO_USER ln -sf $DIR/.zsh_history /home/$SUDO_USER/.zsh_history
 sudo -u $SUDO_USER ln -sf $DIR/.vimrc /home/$SUDO_USER/.vimrc
 sudo -u $SUDO_USER ln -sf $DIR/.gitconfig /home/$SUDO_USER/.gitconfig
 sudo -u $SUDO_USER ln -sf $DIR/.tmux.conf /home/$SUDO_USER/.tmux.conf
