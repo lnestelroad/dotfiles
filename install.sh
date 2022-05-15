@@ -1,9 +1,7 @@
 #!/bin/bash
 
-set -x
+set -e
 echo "Shalom, World!"
-
-MINIMAL=0
 
 print_usage() {
     echo "Installation script for custom development environment."	
@@ -78,5 +76,8 @@ sudo -u $SUDO_USER ln -sf $DIR/.zshrc /home/$SUDO_USER/.zshrc
 sudo -u $SUDO_USER ln -sf $DIR/.vimrc /home/$SUDO_USER/.vimrc
 sudo -u $SUDO_USER ln -sf $DIR/.gitconfig /home/$SUDO_USER/.gitconfig
 sudo -u $SUDO_USER ln -sf $DIR/.tmux.conf /home/$SUDO_USER/.tmux.conf
+
+mkdir -p $SUDO_USER/.ssh
+cp $DIR/config /home/$SUDO_USER/.ssh/config
 
 chsh -s $(which zsh)
