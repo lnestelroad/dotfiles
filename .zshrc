@@ -103,9 +103,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
 #############################################################
 #ALIAS
 # 
-alias ls="ls -ahl --color"
-alias algo="~/algo"
-alias tree="tree -C"
+alias ls="exa -ahl"
+alias tree="exa --tree"
+alias cat="batcat"
 
 function mvd() {
   echo $1
@@ -148,3 +148,4 @@ function mkcd {
 }
 
 eval $(thefuck --alias)
+eval "$(zoxide init zsh)"
