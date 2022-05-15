@@ -6,5 +6,5 @@ printout() {
 
 while :
   do
-	sl -ea
+  sl -ea
   done

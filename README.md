@@ -4,23 +4,23 @@
 
 ### Oh My Zsh
 
-1. Install oh-my-zsh 
+1. Install oh-my-zsh
 `sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"`
 
-2. Clone necessary plugins. 
+2. Clone necessary plugins.
 ```[bash]
 git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
-3. Add plugins to ~/.zshrc as 
+3. Add plugins to ~/.zshrc as
 `plugins = ( zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)`
 Note: make sure zsh-syntax-highlighting is the last one in the above list.
 
-4. Fix background theme issues (Not necessary depends on your theme.) Add the following line to your ~/.zshrc. 
+4. Fix background theme issues (Not necessary depends on your theme.) Add the following line to your ~/.zshrc.
 `ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'`
 
-5. Restart zsh 
+5. Restart zsh
 `source ~/.zshrc`
 
 ### Vim
@@ -37,18 +37,18 @@ python3 install.py --clang-completer
 
 This is a growing list of steps and commands to automate the process of:
 
-+ Installing recently used tools/libraries
-+ Importing custom configurations
-+ Linking to the home directory
+-   Installing recently used tools/libraries
+-   Importing custom configurations
+-   Linking to the home directory
 
 ## Summary
-
 
 ## Installation
 
 ### Auto Installation
 
 For users who are using a Ubuntu machine (or anything that uses apt), all you'll need is to run the folling command:
+
 ```zsh
 sh -c "$(wget https://raw.githubusercontent.com/lnestelroad/dotfiles/master/install.sh -O -)"
 ```
@@ -65,8 +65,10 @@ sh -c "$(wget https://raw.githubusercontent.com/lnestelroad/dotfiles/master/inst
     git clone https://github.com/lnestelroad/dotfiles.git ~/.dotfiles
     ```
 
-2. Install application, tools, and libraries.  
-    + First install 
+2. Install application, tools, and libraries.
+
+    - First install
+
     ```zsh
     # Change apt to whatever package manager your linux flavor uses (ex: pacman for arch)
     sudo apt install -y \
@@ -74,7 +76,7 @@ sh -c "$(wget https://raw.githubusercontent.com/lnestelroad/dotfiles/master/inst
         zsh \
         git \
         vim \
-        tmux \ 
+        tmux \
         htop \
         tree \
         ssh \
@@ -144,8 +146,9 @@ sh -c "$(wget https://raw.githubusercontent.com/lnestelroad/dotfiles/master/inst
 
 ## TODO List
 
-- Add options for different types of environments:
-    + Lightweight docker environments
-    + Data analytic specific
+-   Add options for different types of environments:
 
-- Include flag options for verbosity
+    -   Lightweight docker environments
+    -   Data analytic specific
+
+-   Include flag options for verbosity
