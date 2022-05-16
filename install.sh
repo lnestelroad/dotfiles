@@ -66,9 +66,20 @@ sudo -u $SUDO_USER git clone https://github.com/zsh-users/zsh-history-substring-
 sudo -u $SUDO_USER git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$SUDO_USER/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 sudo -u $SUDO_USER rm /home/$SUDO_USER/.zshrc
 
-# Vim bundler setup
+# Vim setup
 sudo -u $SUDO_USER git clone https://github.com/VundleVim/Vundle.vim.git /home/$SUDO_USER/.vim/bundle/Vundle.vim
 sudo -u $SUDO_USER vim +visual +PluginInstall +qall
+
+# Tmux setup
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# start a server but don't attach to it
+tmux start-server
+# create a new session but don't attach to it either
+tmux new-session -d
+# install the plugins
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
+# killing the server is not required, I guess
+tmux kill-server
 
 # Soft link config files in home directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
