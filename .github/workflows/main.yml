@@ -27,8 +27,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Test initial install script
-        run: $GITHUB_WORKSPACE/install.sh
+        run: sudo $GITHUB_WORKSPACE/install.sh
 
       # Runs a set of commands using the runners shell
       - name: Test second run of install script
-        run: $GITHUB_WORKSPACE/install.sh
+        run: sudo $GITHUB_WORKSPACE/install.sh
