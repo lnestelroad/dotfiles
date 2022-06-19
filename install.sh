@@ -69,14 +69,14 @@ then
     sudo -u $SUDO_USER rm /home/$SUDO_USER/.zshrc
 fi
 # Vim setup
-if [ ! -d "/home/$SUDO_USER/.vim"]
+if [ ! -d "/home/$SUDO_USER/.vim" ]
 then
     sudo -u $SUDO_USER git clone https://github.com/VundleVim/Vundle.vim.git /home/$SUDO_USER/.vim/bundle/Vundle.vim
     sudo -u $SUDO_USER vim +visual +PluginInstall +qall
 fi
 
 # Tmux setup
-if [ ! -d "/home/$SUDO_USER/.tmux"]
+if [ ! -d "/home/$SUDO_USER/.tmux" ]
 then
     sudo -u $SUDO_USER git clone https://github.com/tmux-plugins/tpm /home/$SUDO_USER/.tmux/plugins/tpm
     # start a server but don't attach to it
