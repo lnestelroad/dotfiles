@@ -1,6 +1,10 @@
 [user]
 	name = Liam Nestelroad
 	email = nestelroadliam@gmail.com
-	signingkey = ABD797C18466AF3C
+	signingkey = B428E19EA9794E9E
 [core]
 	editor=vim
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
