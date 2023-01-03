@@ -4,7 +4,7 @@ Contained within this repo is all of the configs and scripts necessary to
 stand up my preferred terminal and development environment. Below will be 
 detailed instructions for how to manually set up each part. 
 
-## Setup
+## Pre-Setup
 
 ```bash
 sudo apt update -y && sudo apt upgrade -y
@@ -29,7 +29,7 @@ sudo apt install -y \
 
 ## Terminal
 
-### Relevant Files
+### Relevant File
 - [.zshrc](.zshrc) - Zsh Shell Configuration
 
 ### Dependencies
@@ -143,4 +143,25 @@ After starting a new session run:
 - [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Show line modifications on left hand side
 - [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) - Integrates git commands into neovim
 
+## GPG 
 
+To configure GPG with the use of a Yubikey, follow [DrDuh's YukiKey-Guide](https://github.com/drduh/YubiKey-Guide)
+
+### Relevant File
+- [.gnupg](.gnupg) - Zsh Shell Configuration
+
+## SSH
+
+### Relevant File
+- [.ssh](.ssh) - Zsh Shell Configuration
+
+## Soft Linking
+
+```bash
+ln -sf .zshrc ~/.zshrc
+ln -sf .config/nvim ~/.config/nvim
+ln -sf .gitconfig ~/.gitconfig
+ln -sf .tmux.conf ~/.tmux.conf
+ln -sf .ssh ~/.ssh
+ln -sf .gnupg ~/.gnupg
+```
