@@ -14,8 +14,12 @@ sudo apt install -y \
     tmux            \
     exa             \
     bat             \
+    fzf             \
+    npm             \
     cmake           \
+    snapd           \
     ripgrep         \
+    nodejs          \
     build-essential \
     docker.io       \
     docker-compose  \
@@ -24,7 +28,12 @@ sudo apt install -y \
     python3         \
     python3-dev     \
     python3-pip     \
-    python3-setuptools
+    python3-setuptools \
+    apt-transport-https \
+    ca-certificates 
+
+snap install --classic kubectl
+snap install --classic helm
 ```
 
 ## Terminal
@@ -53,6 +62,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 zsh-syntax-highlighting:
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+zsh-history-substring-search
+```bash
+git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 ```
 
 ## Tmux

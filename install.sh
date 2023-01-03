@@ -7,26 +7,14 @@ print_usage() {
     echo "Installation script for custom development environment."	
 }
 
-while getopts mh flag
-do
-    case "${flag}" in
-        m) MINIMAL=1;;
-        h) print_usage
-           exit 0;;
-    esac
-done
-echo "Minimal Install: $MINIMAL";
-
 apt update && apt upgrade -y
 apt install -y \
     apt-transport-https \
     ca-certificates \
     zsh \
     git \
-    vim \
     tmux \
     htop \
-    tree \
     ssh \
     sl \
     snapd \
@@ -63,6 +51,7 @@ sudo -u $SUDO_USER pip3 install commitizen
 if [ ! -d "/home/$SUDO_USER/.oh-my-zsh" ]
 then 
     sudo -u $SUDO_USER sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    sudo -u $SUDO_USER git clone https://github.com/romkatv/powerlevel10k.git $SUDO_USER/.oh-my-zsh/themes/powerlevel10k
     sudo -u $SUDO_USER git clone https://github.com/zsh-users/zsh-autosuggestions /home/$SUDO_USER/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     sudo -u $SUDO_USER git clone https://github.com/zsh-users/zsh-history-substring-search /home/$SUDO_USER/.oh-my-zsh/custom/plugins/zsh-history-substring-search
     sudo -u $SUDO_USER git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$SUDO_USER/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
@@ -70,10 +59,11 @@ then
 fi
 
 # Vim setup (TODO: Replace with NVIM)
-if [ ! -d "/home/$SUDO_USER/.vim" ]
+if [ ! -d "/home/$SUDO_USER/nvim" ]
 then
-    sudo -u $SUDO_USER git clone https://github.com/VundleVim/Vundle.vim.git /home/$SUDO_USER/.vim/bundle/Vundle.vim
-    sudo -u $SUDO_USER vim +visual +PluginInstall +qall
+    sudo -u $SUDO_USER git clone https://github.com/neovim/neovim.git /home/$SUDO_USER/nvim
+    make CMAKE_BUILD_TYPE=Release
+    sudo make install
 fi
 
 # Tmux setup
@@ -93,11 +83,11 @@ fi
 # Soft link config files in home directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 sudo -u $SUDO_USER ln -sf $DIR/.zshrc /home/$SUDO_USER/.zshrc
-sudo -u $SUDO_USER ln -sf $DIR/.vimrc /home/$SUDO_USER/.vimrc
+sudo -u $SUDO_USER ln -sf $DIR/.config/nvim /home/$SUDO_USER/.config/nvim
 sudo -u $SUDO_USER ln -sf $DIR/.gitconfig /home/$SUDO_USER/.gitconfig
 sudo -u $SUDO_USER ln -sf $DIR/.tmux.conf /home/$SUDO_USER/.tmux.conf
+sudo -u $SUDO_USER ln -sf $DIR/.ssh/config /home/$SUDO_USER/.ssh/config
+sudo -u $SUDO_USER ln -sf $DIR/.gnupg /home/$SUDO_USER/.gnupg
 
-mkdir -p $SUDO_USER/.ssh
-cp $DIR/config /home/$SUDO_USER/.ssh/config
 
 chsh -s $(which zsh)
