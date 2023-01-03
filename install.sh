@@ -68,7 +68,8 @@ then
     sudo -u $SUDO_USER git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$SUDO_USER/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     sudo -u $SUDO_USER rm /home/$SUDO_USER/.zshrc
 fi
-# Vim setup
+
+# Vim setup (TODO: Replace with NVIM)
 if [ ! -d "/home/$SUDO_USER/.vim" ]
 then
     sudo -u $SUDO_USER git clone https://github.com/VundleVim/Vundle.vim.git /home/$SUDO_USER/.vim/bundle/Vundle.vim
