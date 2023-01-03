@@ -1,112 +1,146 @@
 # Liam Nestelroad's Dotfiles
 
 Contained within this repo is all of the configs and scripts necessary to 
-stand up my prefered terminal developement environement. Below will be detailed
-instructions for how to manually set up each part. 
+stand up my preferred terminal and development environment. Below will be 
+detailed instructions for how to manually set up each part. 
 
-## Installation
+## Setup
 
-### Auto Installation
-
-For users who are using a Debian based OS, all you'll need is to do is run the 
-folling command:
-
-```zsh
-sh -c "$(wget https://raw.githubusercontent.com/lnestelroad/dotfiles/master/install.sh -O -)"
+```bash
+sudo apt update -y && sudo apt upgrade -y
+sudo apt install -y \
+    git             \
+    zsh             \
+    tmux            \
+    exa             \
+    bat             \
+    cmake           \
+    ripgrep         \
+    build-essential \
+    docker.io       \
+    docker-compose  \
+    vagrant         \
+    ansible         \
+    python3         \
+    python3-dev     \
+    python3-pip     \
+    python3-setuptools
 ```
 
-### Manual Installation
+## Terminal
 
-1. Clone repo into new hidden directory.
+### Relevant Files
+- [.zshrc](.zshrc) - Zsh Shell Configuration
 
-    ```zsh
-    git clone git@github.com:lnestelroad/dotfiles.git ~/.dotfiles
-    ```
+### Dependencies
 
-2. Install application, tools, and libraries.
+Oh My Zsh:
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
-    - First install
+PowerLevel10K:
+```bash
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+p10k configure #follow install wizard 
+```
 
-    ```zsh
-    # Change apt to whatever package manager your linux flavor uses (ex: pacman for arch)
-    sudo apt install -y \
-        # Terminal tools
-        zsh \
-        git \
-        vim \
-        tmux \
-        htop \
-        tree \
-        ssh \
-        # Devops tools
-        docker.io \
-        docker-compose \
-        vagrant \
-        ansible \
-        # Python stuff
-        python3 \
-        python3-dev \
-        python3-pip \
-        python3-setuptools \
-        # Basic C/C++ compile tools
-        build-essential \ #specific for ubuntu
-        cmake \
-        # Application installation tools
-        snapd
-    ```
+zsh-autosuggestions:
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
 
-3. Create symlinks in the Home directory to the real files in the repo.
+zsh-syntax-highlighting:
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
 
-    ```bash
-    # There are better and less manual ways to do this;
-    # investigate install scripts and bootstrapping tools.
+## Tmux
 
-    ln -sf ~/.dotfiles/.zshrc ~/.zshrc
-    ln -sf ~/.dotfiles/.zsh_history ~/.zsh_history
-    ln -sf ~/.dotfile/.vimrc ~/.vimrc
-    ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
-    ln -sf ~/.dotfile/.tmux.conf ~/.tmux.conf
-    ```
+### Relevant Files
+- [.tmux.conf](.tmux.conf) - Tmux Configuration File
 
-<!-- 4. Install vscode extensions. -->
-<!--     ```zsh -->
-<!--     code --install-extension aaron-bond.better-comments -->
-<!--     code --install-extension CoenraadS.bracket-pair-colorizer-2 -->
-<!--     code --install-extension dave-hagedorn.jenkins-runner -->
-<!--     code --install-extension disroop.conan -->
-<!--     code --install-extension eamodio.gitlens -->
-<!--     code --install-extension Equinusocio.vsc-community-material-theme -->
-<!--     code --install-extension Equinusocio.vsc-material-theme -->
-<!--     code --install-extension equinusocio.vsc-material-theme-icons -->
-<!--     code --install-extension GrapeCity.gc-excelviewer -->
-<!--     code --install-extension Gruntfuggly.todo-tree -->
-<!--     code --install-extension hediet.vscode-drawio -->
-<!--     code --install-extension James-Yu.latex-workshop -->
-<!--     code --install-extension janjoerke.jenkins-pipeline-linter-connector -->
-<!--     code --install-extension ms-azuretools.vscode-docker -->
-<!--     code --install-extension ms-python.python -->
-<!--     code --install-extension ms-python.vscode-pylance -->
-<!--     code --install-extension ms-toolsai.jupyter -->
-<!--     code --install-extension ms-vscode-remote.remote-containers -->
-<!--     code --install-extension ms-vscode.cpptools -->
-<!--     code --install-extension PKief.material-icon-theme -->
-<!--     code --install-extension streetsidesoftware.code-spell-checker -->
-<!--     code --install-extension tomoki1207.pdf -->
-<!--     code --install-extension twxs.cmake -->
-<!--     code --install-extension VisualStudioExptTeam.vscodeintellicode -->
-<!--     code --install-extension vscode-icons-team.vscode-icons -->
-<!--     code --install-extension vscodevim.vim -->
-<!--     ``` -->
-<!--     Use this command to generate extension installation list: -->
-<!--     ```bash -->
-<!--     code --list-extensions | xargs -L 1 echo code --install-extension -->
-<!--     ``` -->
+### Dependencies
 
-## TODO List
+Tmux Plugin Manager (tpm)
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+After starting a new session run:
+```bash
+<prefix> Shift+I
+```
+> Note: if using these configs the prefix is `<C-a>`
 
--   Add options for different types of environments:
+## Neovim
 
-    -   Lightweight docker environments
-    -   Data analytic specific
+### Relevant Files
+- [.config/nvim](.config/nvim)
 
--   Include flag options for verbosity
+### Setup Requires
+- [Neovim](https://neovim.io/) (Version 0.9 or Later)
+- [Nerd Font](https://www.nerdfonts.com/) - I use Meslo Nerd Font
+- [Ripgrep](https://github.com/BurntSushi/ripgrep) - For Telescope Fuzzy Finder
+
+### Plugins
+#### Plugin Manager
+- [wbthomason/packer](https://github.com/wbthomason/packer.nvim) - Popular plugin manager
+
+#### Dependency For Other Plugins
+- [nvim-lua/plenary](https://github.com/nvim-lua/plenary.nvim) - Useful lua functions other plugins use
+
+#### Preferred Colorscheme: Material
+- [kaicataldo/material.vim](https://github.com/kaicataldo/material.vim)
+
+#### Navigating Between Neovim Windows and Tmux
+- [christoomey/vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+
+#### Essentials
+- [tpope/vim-surround](https://github.com/tpope/vim-surround) - manipulate surroundings with "ys", "ds", and "cs"
+- [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) - toggle comments with "gc"
+
+#### File Explorer
+- [nvim-tree/nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
+
+#### VS Code Like Icons
+- [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
+
+#### Status Line
+- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+
+#### Fuzzy Finder
+- [nvim-telescope/telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) - Dependency for better performance
+- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy Finder
+
+#### Autocompletion
+- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completion plugin
+- [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer) - Completion source for text in current buffer
+- [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path) - Completion source for file system paths
+
+#### Snippets
+- [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) - Snippet engine
+- [rafamadriz/friendly-snippets](https://github.com/rafamadriz/friendly-snippets) - Useful snippets for different languages
+- [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip) - Completion source for snippet autocomplete
+
+#### Managing & Installing Language Servers, Linters & Formatters
+- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
+
+#### LSP Configuration
+- [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) - Bridges gap b/w mason & lspconfig
+- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Easy way to configure lsp servers
+- [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) - Smart code autocompletion with lsp
+
+#### Formatting & Linting
+- [jose-elias-alvarez/null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) - Easy way to configure formatters & linters
+- [jayp0521/mason-null-ls.nvim](https://github.com/jayp0521/mason-null-ls.nvim) - Bridges gap b/w mason & null-ls
+
+#### Syntax Highlighting & Autoclosing Things
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter configuration
+- [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Autoclose brackets, parens, quotes, etc...
+- [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Autoclose tags
+
+#### Git
+- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Show line modifications on left hand side
+- [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) - Integrates git commands into neovim
+
+
