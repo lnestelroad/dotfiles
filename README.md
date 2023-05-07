@@ -8,29 +8,7 @@ detailed instructions for how to manually set up each part.
 
 ```bash
 sudo apt update -y && sudo apt upgrade -y
-sudo apt install -y \
-    git             \
-    zsh             \
-    tmux            \
-    exa             \
-    bat             \
-    fzf             \
-    npm             \
-    cmake           \
-    snapd           \
-    ripgrep         \
-    nodejs          \
-    build-essential \
-    docker.io       \
-    docker-compose  \
-    vagrant         \
-    ansible         \
-    python3         \
-    python3-dev     \
-    python3-pip     \
-    python3-setuptools \
-    apt-transport-https \
-    ca-certificates 
+sudo apt install -y git zsh tmux exa bat fzf npm cmake snapd ripgrep nodejs build-essential docker.io docker-compose vagrant ansible python3 python3-dev python3-pip python3-setuptools apt-transport-https ca-certificates
 
 snap install --classic kubectl
 snap install --classic helm
