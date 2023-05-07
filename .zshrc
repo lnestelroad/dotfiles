@@ -8,10 +8,13 @@ fi
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 gpg-connect-agent updatestartuptty /bye > /dev/null
+
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.local/bin:/usr/bin/python:$HOME/bin:/usr/local/bin:/usr/sbin:$PATH
+#
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -91,11 +94,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -114,7 +117,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
 #############################################################
 #ALIAS
 # 
-alias ls="exa -ahl"
+alias ls="exa -ahl --icons"
 alias tree="exa --tree"
 alias cat="batcat"
 alias top="bpytop"
@@ -128,6 +131,15 @@ function mkcd {
   else
     mkdir $1 && cd $1
   fi
+}
+
+function batdiff {
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
 }
 
 eval $(thefuck --alias)
