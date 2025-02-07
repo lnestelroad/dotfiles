@@ -29,6 +29,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit load zsh-users/zsh-history-substring-search
 zinit ice wait atload'_history_substring_search_config'
+HISTORY_SUBSTRING_SEARCH_PREFIXED=true
 
 # Load completions
 autoload -U compinit && compinit
@@ -39,12 +40,17 @@ autoload -U compinit && compinit
 # Keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '[OA' history-substring-search-up
+bindkey '[OB' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
 # History
 HISTSIZE=5000
-HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/.zsh_history
+HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
