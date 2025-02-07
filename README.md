@@ -15,32 +15,34 @@ Ensure you have the following installed on your system
 
 ### Git
 
-Red Hat:
 ```bash
-dnf install -y git 
-```
-
-Debian:
-```bash
-apt install -y git 
+sudo apt install -y git 
 ```
 
 ### GNU Stow
 
-Red Hat
 ```bash
-dnf install -y stow
+sudo apt install -y stow
 ```
 
-Debian:
-```bash
-apt install -y stow
-```
-
-### Tmux Plugin Manager
+### Tmux and TPM
 
 ```bash
+sudo apt install tmx
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+### Neovim
+
+```bash
+sudo apt install neovim
+```
+
+### ZSH
+
+```bash
+sudo apt install zsh
+sudo chsh ... # i forgor cmd
 ```
 
 ## Installation
