@@ -28,11 +28,18 @@ zinit light zsh-users/zsh-autosuggestions
 ## History substring searching
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit load zsh-users/zsh-history-substring-search
-zinit ice wait atload'_history_substring_search_config'
 HISTORY_SUBSTRING_SEARCH_PREFIXED=true
 
 # Load completions
 autoload -U compinit && compinit
+
+# OMZ Plugins
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::command-not-found
+
+zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -86,3 +93,7 @@ help() {
 }
 
 # Shell Integrations
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
