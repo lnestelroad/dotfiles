@@ -1,3 +1,6 @@
+source ~/.zsh_env
+source ~/.zsh_aliases
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -34,10 +37,10 @@ HISTORY_SUBSTRING_SEARCH_PREFIXED=true
 autoload -U compinit && compinit
 
 # OMZ Plugins
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::command-not-found
+zi snippet OMZP::git
+zi snippet OMZP::sudo
+zi snippet OMZP::kubectl
+zi snippet OMZP::command-not-found
 
 zinit cdreplay -q
 
@@ -67,33 +70,17 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+# Editor
+export EDITOR='nvim'
+export VISUAL='nvim'
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 
-# Aliases
-alias ls="exa -ahl --icons"
-alias cat="bat"
-alias top="bpytop"
-alias vim="nvim"
-
-# Functions
-
-function center(){
-  python3 -c "print(' $1 '.center(75, '${2--}'))"
-
-}
-function batdiff {
-    git diff --name-only --relative --diff-filter=d | xargs bat --diff
-}
-alias bathelp='bat --plain --language=help'
-help() {
-    "$@" --help 2>&1 | bathelp
-}
-
 # Shell Integrations
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
